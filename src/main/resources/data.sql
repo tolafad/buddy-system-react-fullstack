@@ -8,7 +8,7 @@ CREATE TABLE users (
 
 ALTER TABLE users ADD FOREIGN KEY(BUDDY_ID) REFERENCES users(id);
 
-INSERT INTO users (ID, FIRST_NAME,EMAIL) VALUES
+INSERT INTO users (ID, NAME,EMAIL) VALUES
   (1, 'first', 'abc1@gmail.com'),
   (2, 'first', 'abc2@gmail.com'),
   (3, 'first', 'abc3@gmail.com'),

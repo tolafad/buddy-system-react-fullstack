@@ -1,13 +1,16 @@
 package com.buddy.springboot;
 
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BuddySystemApplicationTests {
+public class BuddySystemApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
+		fail();
 	}
 
 }
