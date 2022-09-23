@@ -12,36 +12,44 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
+
 public class Users {
-	
+
 	@Id
 	@Column
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @Column
-    private String name;
-   
-    
-    @Column
-    private String email;
-    
-    @OneToOne(fetch = FetchType.LAZY)    
-    private Users buddy;
-    
-   
-    public Users() {
+	@Column
+	private String name;
+
+	@Column
+	private String email;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private Users buddy;
+
+	public Users() {
 		super();
 	}
 
-	Users(Users user){
-    	this.setId(user.getId());
-    	this.setName(user.getName());
-    	this.setEmail(user.getEmail());
+	Users(Users user) {
+		this.setId(user.getId());
+		this.setName(user.getName());
+		this.setEmail(user.getEmail());
 
+	}
+
+	Users(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.email = builder.email; 
+    }
+	
+    public static Builder builder() {
+        return new Builder();
     }
     
 	public Users getBuddy() {
@@ -98,5 +106,40 @@ public class Users {
 		return id == other.id;
 	}
 
-	
+	public static class Builder {
+
+		private int id;
+
+		private String name;
+
+		private String email;
+
+		private Users buddy;
+
+ 		public Builder withId(Integer id) {
+			this.id = id;
+			return this;
+		}
+
+ 		public Builder withName(String name) {
+			this.name = name;
+			return this;
+		}
+
+ 		public Builder withEmail(String email) {
+			this.email = email;
+			return this;
+		}
+
+ 		public Builder witBuddy(Users buddy) {
+			this.buddy = buddy;
+			return this;
+		}
+
+		public Users build() {
+			return new Users(this);
+		}
+
+	}
+
 }
